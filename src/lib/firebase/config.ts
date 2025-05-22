@@ -1,7 +1,7 @@
 import { initializeApp, getApps, getApp, FirebaseApp } from 'firebase/app';
 import { getAuth, Auth } from 'firebase/auth';
 import { getFirestore, Firestore } from 'firebase/firestore';
-// import { getAnalytics } from "firebase/analytics"; // Optional: if you need analytics
+import { getAnalytics } from "firebase/analytics"; // Optional: if you need analytics
 
 // Your web app's Firebase configuration
 // It's highly recommended to use environment variables for this
@@ -12,8 +12,11 @@ const firebaseConfig = {
   storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
-  // measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID, // Optional
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID, // Optional
 };
+
+// Gemini API Key
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 
 // Initialize Firebase
 let app: FirebaseApp;
@@ -25,6 +28,6 @@ if (!getApps().length) {
 
 const auth: Auth = getAuth(app);
 const db: Firestore = getFirestore(app);
-// const analytics = getAnalytics(app); // Optional
+const analytics = getAnalytics(app); // Optional
 
-export { app, auth, db };
+export { app, auth, db, GEMINI_API_KEY, analytics };
